@@ -100,44 +100,44 @@ Esta é uma pergunta de entrevista JavaScript extremamente comum. Todos os objet
 * https://www.quora.com/What-is-prototypal-inheritance/answer/Kyle-Simpson
 * https://davidwalsh.name/javascript-objects
 
-[[↑] Back to top](#js-questions)
+[[↑] Voltar ao topo](#js-questions)
 
-### What do you think of AMD vs CommonJS?
+### O que você acha da AMD vs CommonJS?
 
-Both are ways to implement a module system, which was not natively present in JavaScript until ES2015 came along. CommonJS is synchronous while AMD (Asynchronous Module Definition) is obviously asynchronous. CommonJS is designed with server-side development in mind while AMD, with its support for asynchronous loading of modules, is more intended for browsers.
+Ambas são formas de implementar um sistema de módulos, que não estava nativamente presente em JavaScript até o lançamento do ES2015. O CommonJS é síncrono, enquanto o AMD (Assynchronous Module Definition) é obviamente assíncrono. O CommonJS é projetado com o desenvolvimento do lado do servidor em mente, enquanto a AMD, com seu suporte para carregamento assíncrono de módulos, é mais destinada a navegadores.
 
-I find AMD syntax to be quite verbose and CommonJS is closer to the style you would write import statements in other languages. Most of the time, I find AMD unnecessary, because if you served all your JavaScript into one concatenated bundle file, you wouldn't benefit from the async loading properties. Also, CommonJS syntax is closer to Node style of writing modules and there is less context-switching overhead when switching between client side and server side JavaScript development.
+Acho a sintaxe da AMD bastante detalhada e o CommonJS está mais próximo do estilo em que você escreveria instruções de importação em outros idiomas. Na maioria das vezes, acho a AMD desnecessária, porque se você servisse todo o seu JavaScript em um arquivo de pacote concatenado, não se beneficiaria das propriedades de carregamento assíncrono. Além disso, a sintaxe do CommonJS está mais próxima do estilo de Node dos módulos de escrita e há menos sobrecarga de comutação de contexto ao alternar entre o desenvolvimento de JavaScript do lado do cliente e do lado do servidor.
 
-I'm glad that with ES2015 modules, that has support for both synchronous and asynchronous loading, we can finally just stick to one approach. Although it hasn't been fully rolled out in browsers and in Node, we can always use transpilers to convert our code.
+Fico feliz que com os módulos ES2015, que têm suporte para carregamento síncrono e assíncrono, podemos finalmente nos ater a apenas uma abordagem. Embora não tenha sido totalmente implementado nos navegadores e no Node, sempre podemos usar os transpilers para converter nosso código.
 
-###### References
+###### Referências
 
 * https://auth0.com/blog/javascript-module-systems-showdown/
 * https://stackoverflow.com/questions/16521471/relation-between-commonjs-amd-and-requirejs
 
-[[↑] Back to top](#js-questions)
+[[↑] Voltar ao Topo](#js-questions)
 
-### Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?
+### Explique por que o seguinte não funciona como um IIFE: `function foo () {} ();`. O que precisa ser alterado para torná-lo um IIFE?
 
-IIFE stands for Immediately Invoked Function Expressions. The JavaScript parser reads `function foo(){ }();` as `function foo(){ }` and `();`, where the former is a function declaration and the latter (a pair of brackets) is an attempt at calling a function but there is no name specified, hence it throws `Uncaught SyntaxError: Unexpected token )`.
+IIFE significa Expressões de Função Invocadas Imediatamente. O analisador JavaScript lê a função `foo () {} ();` como `function foo () {}`e `();`, onde o primeiro é uma declaração de função e o último (um par de colchetes) é uma tentativa Ao chamar uma função, mas não há nenhum nome especificado, portanto, ele lança `Untaught SyntaxError: Token inesperado)`.
 
-Here are two ways to fix it that involves adding more brackets: `(function foo(){ })()` and `(function foo(){ }())`. These functions are not exposed in the global scope and you can even omit its name if you do not need to reference itself within the body.
+Aqui estão duas maneiras de consertá-lo, o que envolve adicionar mais colchetes: `(function foo () {}) ()` e `(function foo () {} ())`. Essas funções não são expostas no escopo global e você pode até mesmo omitir seu nome se não precisar fazer referência a si mesmo dentro do corpo.
 
-You might also use `void` operator: `void function foo(){ }();`. Unfortunately, there is one issue with such approach. The evaluation of given expression is always `undefined`, so if your IIFE function returns anything, you can't use it. An example:
+Você também pode usar o operador `void`:` void function foo () {} (); `. Infelizmente, há um problema com essa abordagem. A avaliação da expressão dada é sempre 'indefinida', então se sua função IIFE retorna alguma coisa, você não pode usá-la. Um exemplo:
 
 ```
-// Don't add JS syntax to this code block to prevent Prettier from formatting it.
-const foo = void function bar() { return 'foo'; }();
+// Não adicione a sintaxe JS a este bloco de código para evitar que o Prettier o formate.
+const foo = void barra de funções () {return 'foo'; } ();
 
-console.log(foo); // undefined
+console.log (foo); // Indefinido
 ```
 
-###### References
+###### Referências
 
 * http://lucybain.com/blog/2014/immediately-invoked-function-expression/
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/void
 
-[[↑] Back to top](#js-questions)
+[[↑] Voltar ao Topo](#js-questions)
 
 ### What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?
 
